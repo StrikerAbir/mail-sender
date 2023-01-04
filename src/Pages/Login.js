@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../authProvider/AuthProvider';
+import google from '../assets/google.png'
+import facebook from '../assets/facebook.png'
+import apple from '../assets/apple.png'
 
 const Login = () => {
   const { googleProviderLogin } = useContext(AuthContext);
@@ -25,12 +28,15 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <button
-        onClick={handleGoogleLogin}
-        className="btn btn-primary btn-outline w-full"
-      >
-        CONTINUE WITH GOOGLE
+    <div className="flex flex-col justify-center items-center min-h-screen">
+      <button onClick={handleGoogleLogin} className="mb-2">
+        <img src={google} alt="" />
+      </button>
+      <button className="mb-2">
+        <img src={facebook} alt="" />
+      </button>
+      <button className="mb-2">
+        <img src={apple} alt="" />
       </button>
     </div>
   );
