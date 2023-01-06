@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../authProvider/AuthProvider";
-
+import loading from '../assets/file-loading.gif'
 const Imports = () => {
 
     const { logOut } = useContext(AuthContext);
@@ -9,7 +9,7 @@ const Imports = () => {
     const handleLogOut = () => {
         logOut();
     };
-
+    const [hidden,setHidden]=useState(false)
     const [ importedEmail, setImportedEmail ] = useState([])
         // console.log(importedEmail);
     // console.log(user);
@@ -35,6 +35,7 @@ const Imports = () => {
     }
 
     const sendMail = async () => {
+        setHidden(true)
         let response = 0;
         for (let i = 0; i < importedEmail.length; i++){
             
@@ -50,6 +51,7 @@ const Imports = () => {
                 response = response + 1;
              };
             if (response === importedEmail.length) {
+                setHidden(false)
                  toast.success("Email send successfully..");
              }
         }
@@ -85,9 +87,15 @@ const Imports = () => {
               {gmail}
             </li>
           ))}
-          <button className="p-2 rounded bg-green-300 mt-5" onClick={sendMail}>
-            Send Mail
-          </button>
+          <div className="flex w-full items-center">
+            <button
+              className="p-2 rounded bg-green-300 mt-5"
+              onClick={sendMail}
+            >
+              Send Mail
+            </button>
+            <img src={loading} alt="" className={`w-10 ${hidden?`block`:`hidden`}`} />
+          </div>
         </div>
       )}
     </div>
