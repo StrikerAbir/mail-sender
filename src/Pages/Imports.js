@@ -38,7 +38,7 @@ const Imports = () => {
         let response = 0;
         for (let i = 0; i < importedEmail.length; i++){
             
-            const res = fetch("http://localhost:1000/send", {
+            const res = fetch("https://mail-sender-server.vercel.app/send", {
               method: "POST",
               headers: {
                 "content-type": "application/json",
