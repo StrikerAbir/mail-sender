@@ -3,9 +3,15 @@ import { toast } from "react-hot-toast";
 import { AuthContext } from "../authProvider/AuthProvider";
 
 const Imports = () => {
+
+    const { logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut();
+    };
+
     const [ importedEmail, setImportedEmail ] = useState([])
         // console.log(importedEmail);
-  const { user } = useContext(AuthContext);
     // console.log(user);
     const processingCsv = (data) => {
         // console.log(data);
@@ -51,7 +57,9 @@ const Imports = () => {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen mx-4">
-      <button className="p-2 rounded bg-red-300 mb-10">LogOut</button>
+      <button className="p-2 rounded bg-red-300 mb-10" onClick={handleLogOut}>
+        LogOut
+      </button>
       <form onSubmit={handleImport}>
         <div>
           <input
